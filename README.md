@@ -2,50 +2,49 @@
 
 # Japan Stat Atlas
 
-An independent atlas of Japan's national statistics — population, economy, labour
-market, prices and regions — as a static site that runs offline in any browser,
-on desktop and on a phone.
+A national statistics site for Japan, built as plain static files that run
+offline in any browser — desktop and phone — with no network request.
 
 ## What it covers
 
-- **Overview** — six headline indicators (population, GDP, inflation, unemployment,
-  life expectancy, government debt), ten-year population and GDP charts, and the latest
-  statistical releases.
-- **Population** — the 2015–2024 trend, the age structure, and a searchable, sortable
-  table of all 47 prefectures with population, area and density.
-- **Economy** — real GDP growth, GDP in dollars, the sector mix (services / industry /
-  agriculture) and Japan's top export destinations, on switchable tabs.
-- **Labour & Prices** — unemployment and inflation charts, wages, and everyday prices
-  in Tokyo.
-- **Regions** — population by region, a prefecture picker with a detail card, and the
-  ten largest cities.
-- **Data & Sources** — headline indicators by year (pick any year 2015–2024), a CSV
-  download of every series, and the source of every figure.
+- **Overview** — six headline indicators (population, GDP, GDP per person,
+  unemployment, CPI, life expectancy), a population trend chart, a GDP growth
+  chart, and the latest releases.
+- **Population** — population trend and age-structure charts, a searchable
+  and sortable table of all 47 prefectures (population, area, capital,
+  region, density), and an annual table with a year selector.
+- **Economy** — tabs for growth (real GDP, 2019–2024), structure (services /
+  industry / agriculture) and trade (exports, imports, top partners).
+- **Labour & Prices** — unemployment and CPI charts, average monthly cash
+  earnings, and a city price table.
+- **Regions** — population by region, a prefecture picker with a detail card,
+  and the ten largest cities.
+- **Data & Sources** — key indicators by year, a working CSV download of the
+  dataset, and full sources and method notes.
 
-Every figure is real and names its source and year (World Bank, Statistics Bureau of
-Japan, Bank of Japan, IMF, MHLW). The brand and design are original; the site is not
-affiliated with any government office.
+Every figure carries its source and year on the page: Statistics Bureau of
+Japan, Cabinet Office, Ministry of Finance, Ministry of Health, Labour and
+Welfare, IMF and World Bank.
 
-## Running it
+## How it is built
+
+- `app/index.html` — the shell (navigation, footer, script tags).
+- `app/data.js` — all the figures, each with its source.
+- `app/charts.js` — small inline-SVG chart builders (line, bar, horizontal
+  bar, donut); no chart library.
+- `app/app.js` — the hash router and the page renderers.
+- `app/styles.css` — the navy / vermilion / paper design.
+- `main.ts` — copies `app/` and `screenshots/` to `/output` (or
+  `$MAKEFUN_OUTPUT_DIR`) and writes `dossier.json` with `buildDossier`.
+- `serve.ts` — serves `app/` locally for testing (`node serve.ts`).
+
+## Try it
 
 ```sh
-node serve.ts        # serves app/ at http://localhost:8080
-```
-
-No build step, no network requests: `app/` is plain files (`index.html`, `style.css`,
-`data.js`, `charts.js`, `views.js`, `main.js`) and every chart is inline SVG drawn
-from the site's own data.
-
-## Hand-in
-
-`main.ts` copies `app/` and `screenshots/` to `/output` (or `$MAKEFUN_OUTPUT_DIR`)
-and writes `/output/dossier.json` with `buildDossier` from
-`vendor/makefun-frontend.ts` (the kit's copy, unchanged).
-
-```sh
-mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+node serve.ts
+# open http://localhost:8080
 ```
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT — see `LICENSE`.

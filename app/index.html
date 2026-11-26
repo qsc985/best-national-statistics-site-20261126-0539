@@ -3,46 +3,33 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0c2237">
-<meta name="description" content="Japan Stat Atlas — an independent atlas of Japan's population, economy, labour market and regions, with real figures, sources and years.">
 <title>Japan Stat Atlas — National Statistics of Japan</title>
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="style.css">
-<script type="module" src="main.js"></script>
+<meta name="description" content="Population, economy, labour and prices for Japan — real figures with their sources and years, in one small offline site.">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header class="site-header">
-  <div class="header-inner">
-    <a class="brand" href="#/">
-      <span class="brand-mark" aria-hidden="true">日</span>
-      <span class="brand-text">
-        <strong>Japan Stat Atlas</strong>
-        <em>National statistics of Japan, in one place</em>
-      </span>
-    </a>
-    <nav class="main-nav" aria-label="Sections">
-      <a href="#/" data-nav="overview">Overview</a>
-      <a href="#/population" data-nav="population">Population</a>
-      <a href="#/economy" data-nav="economy">Economy</a>
-      <a href="#/labour" data-nav="labour">Labour &amp; Prices</a>
-      <a href="#/regions" data-nav="regions">Regions</a>
-      <a href="#/data" data-nav="data">Data &amp; Sources</a>
-    </nav>
+<header class="masthead">
+  <div class="brand">
+    <h1>Japan Stat Atlas <span class="seal">日本統計</span></h1>
+    <p>National statistics of Japan, with every figure sourced and dated</p>
   </div>
+  <nav class="main" aria-label="Sections">
+    <a href="#/" data-route="">Overview</a>
+    <a href="#/population" data-route="population">Population</a>
+    <a href="#/economy" data-route="economy">Economy</a>
+    <a href="#/labour" data-route="labour">Labour &amp; Prices</a>
+    <a href="#/regions" data-route="regions">Regions</a>
+    <a href="#/data" data-route="data">Data &amp; Sources</a>
+  </nav>
 </header>
-<main id="app" tabindex="-1"></main>
-<footer class="site-footer">
-  <div class="footer-inner">
-    <p><strong>Japan Stat Atlas</strong> is an independent statistics atlas built for readers, not a government publication.
-    Figures are compiled from the World Bank Open Data, the Statistics Bureau of Japan, the Bank of Japan and the IMF,
-    and every figure on this site names its source and year. Not affiliated with any government office.</p>
-    <p class="footer-links">
-      <a href="#/data">Sources &amp; methodology</a> ·
-      <a href="#/data">Download the data (CSV)</a> ·
-      <a href="#/">Back to overview</a>
-    </p>
-    <p class="footer-note">All figures on this site are shown with their source and year. Last updated November 2026.</p>
-  </div>
+<main id="view"></main>
+<footer class="site">
+  <p>Japan Stat Atlas — an independent site built from public statistics. Population, labour and prices: Statistics Bureau of Japan. National accounts: Cabinet Office. Trade: Ministry of Finance. Wages and life expectancy: Ministry of Health, Labour and Welfare. GDP in dollars: IMF. Not affiliated with any government office.</p>
+  <p>Figures are labelled with their source and year on every page; the <a href="#/data">Data &amp; Sources</a> page lists them all and offers the dataset as a CSV.</p>
 </footer>
+<script src="data.js"></script>
+<script src="charts.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
